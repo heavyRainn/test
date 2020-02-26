@@ -10,8 +10,7 @@ public interface ClientMapper {
 
     ClientDto toDto(Client client);
 
-    Client toEntity(ClientDto clientDto);
-
     @Mapping(target = "id", ignore = true)
     Client toEntityExcludeId(ClientDto client);
+
 }

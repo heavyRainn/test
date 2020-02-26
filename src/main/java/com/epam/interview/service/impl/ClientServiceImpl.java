@@ -27,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<ClientDto> getAll() {
-        List<Client> clients = clientRepository.findAll();
+        final List<Client> clients = clientRepository.findAll();
         return clients.stream()
                 .map(clientMapper::toDto)
                 .collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ClientDto create(ClientDto clientDto) {
-        Client clientEntity = clientMapper.toEntityExcludeId(clientDto);
+        final Client clientEntity = clientMapper.toEntityExcludeId(clientDto);
         return save(clientEntity);
     }
 
@@ -60,7 +60,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<ClientDto> merge(Set<Long> ids) {
-        List<Client> requestedClients = clientRepository.findAllById(ids);
+        final List<Client> requestedClients = clientRepository.findAllById(ids);
         if (requestedClients.size() > 1) {
             final Risk maxRisk = this.getMaxRisk(requestedClients);
             List<Client> updatableClients = requestedClients.stream()

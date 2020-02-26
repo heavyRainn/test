@@ -17,7 +17,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {NoClientExistsException.class, EmptyResultDataAccessException.class,
             InvalidDataAccessApiUsageException.class})
     protected ResponseEntity<?> handleEmptyResult(RuntimeException ex, WebRequest request) {
-        final String bodyOfResponse = "No such client with {id} you provided : " + ex;
+        final String bodyOfResponse = "No such client with id you provided : " + ex;
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
